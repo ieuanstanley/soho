@@ -1,4 +1,10 @@
 {{ define "main" -}}
+  <div class="home-content" style="text-align:center">
+	Welcome! You can find my most recent content below. If you want to learn a bit more about me, head over to <a href="{{ .Site.BaseURL }}/about">About</a>.
+  </div>
+  <br/>
+  <hr/>
+  <br/>
   <div class="posts">
     {{- $pages := where .Site.RegularPages "Type" "in" .Site.Params.MainSections -}}
     {{- $paginator := .Paginate $pages -}}
@@ -10,13 +16,13 @@
         </h1>
 
         <div class="post-date">
-          <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z0700" }}">{{ .Date.Format "Jan 2, 2006" }}</time> &middot; {{ .ReadingTime }} min read
+          <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z0700" }}">{{ .Date.Format "Jan 2, 2006" }}</time> &middot; {{ .ReadingTime }} min read &middot; Tags: {{ range .Params.tags }} <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="tag-link">{{ . }}</a> {{ end }}
         </div>
 
         <div>
           {{ .Summary }}
         </div>
-
+		
         <div class="read-more-link">
           <a href="{{ .Permalink }}">Read More</a>
         </div>
